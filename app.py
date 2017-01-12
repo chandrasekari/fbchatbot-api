@@ -78,7 +78,7 @@ def webhook():
                     if text in "text":
 ##                        log("in if 1")
                         msg = messaging_event["message"]["text"]  # the message's text
-                        strResponse = GetMethod(msg)
+                        #strResponse = GetMethod(msg)
                         process_message(msg,sender_id)
 
             if messaging_event.get("delivery"):  # delivery confirmation
