@@ -740,6 +740,7 @@ def process_message(text,sender_id):
                 elif(w.lower()=='log'):
                     if 'out' in str(words).lower():
                         output="log_out"
+                elif()
 ##        for w in words:
 ##                #print w
 ##                print ps.stem(w)
@@ -772,6 +773,7 @@ def process_message(text,sender_id):
 ##                elif(ps.stem(w).lower()=='log'):
 ##                    if 'out' in str(words).lower():
 ##                        output="log_out"
+        print ("heloo" + output)
         send_message(sender_id, output)
 
 def log(message):  # simple wrapper for logging to stdout on heroku
