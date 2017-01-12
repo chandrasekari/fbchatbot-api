@@ -715,7 +715,7 @@ def process_message(text,sender_id):
                         if 'online' in str(words).lower() and 'banking' in str(words).lower():
                             output='Enroll to online banking at https://www.usbank.com/index.html'
                 elif(w.lower()=='block'):
-                        if 'my' in str(words.lower() and 'card' in str(words).lower():
+                        if 'my' in str(words).lower() and 'card' in str(words).lower():
                             output="login"
                 elif(w.lower()=='activat'):
                     output="Card has been Activated"
@@ -732,7 +732,7 @@ def process_message(text,sender_id):
                     #output="Please find the details here: https://www.usbank.com/locations/locator-results.html?stringquery="+w)+"&branch=y&atm=y"
                     output=w.lower()
                 elif(w.lower()=='branch' or w.lower()=='atm'):
-                    if 'locat' in str(words.lower() or 'find' in str(words).lower() or 'search' in str(words).lower():
+                    if 'locat' in str(words).lower() or 'find' in str(words).lower() or 'search' in str(words).lower():
                         output="branch_locate"
                 elif(w.lower()=='login'):
                         output="login_menu"
