@@ -700,6 +700,7 @@ def send_message(recipient_id, message_text):
 def process_message(text,sender_id):
         text=text.lower()
         words=text.split(" ")
+        output=" "
 ##        output="Level-1-Menu"
 ##        ps = PorterStemmer()
 ##        words=word_tokenize(text)
