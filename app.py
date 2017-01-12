@@ -753,7 +753,7 @@ def ProcessAPIAIResponse(strResponse):
     if "APIAIBranchAction" in strResponse:
         return "branch_locate"
 
-    return "branch_locate"
+    return ""
     
 
 
