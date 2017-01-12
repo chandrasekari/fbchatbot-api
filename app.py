@@ -728,7 +728,7 @@ def process_message(text,sender_id):
                         output="transaction_history"
                 elif(w.lower()=='thanks' or w.lower()=='thank'):
                     output="You are Welcome!"
-                 elif(w.lower().isdigit() and len(str(w))):
+                elif(w.lower().isdigit() and len(str(w))):
                     #output="Please find the details here: https://www.usbank.com/locations/locator-results.html?stringquery="+w)+"&branch=y&atm=y"
                     output=w.lower()
                 elif(w.lower()=='branch' or w.lower()=='atm'):
