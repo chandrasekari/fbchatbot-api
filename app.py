@@ -740,7 +740,7 @@ def process_message(text,sender_id):
                 elif(w.lower()=='log'):
                     if 'out' in str(words).lower():
                         output="log_out"
-                elif()
+               
 ##        for w in words:
 ##                #print w
 ##                print ps.stem(w)
