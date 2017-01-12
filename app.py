@@ -78,7 +78,6 @@ def webhook():
                     if text in "text":
 ##                        log("in if 1")
                         msg = messaging_event["message"]["text"]  # the message's text
-                        strResponse = GetMethod(msg)
                         process_message(msg,sender_id)
 
             if messaging_event.get("delivery"):  # delivery confirmation
@@ -104,7 +103,7 @@ def send_message(recipient_id, message_text):
     locFinderUrl="https://publicrestservice.usbank.com/public/ATMBranchLocatorRESTService_V_8_0/GetListATMorBranch/LocationSearch/StringQuery?application=parasoft&transactionid=7777777d-8946-4f88-a958-4bdbcf0bed6f&output=json&searchtype=E&branchfeatures=BOP&stringquery="
 
     params = {
-        "access_token": 'EAAZAgx2FZBzKoBANiyqk8hUmLbo5PqTgHjZAEQ7tCFHDaErWt0YNTTF5sWvZAg8dhbwZCpkfzt2IHdmkZAuMru8VN2kED9JlOVpqvfNyFDxP1ZC1fivsZCzijg4VLeHvEw7MTgd9bxTxezQTORhlAS0oa9xu4bIqjPqWo7wxAwGNDwLcgeehP4jl'
+        "access_token": 'EAARneTfc3AYBAHFkvV5TrNl9H1Y6Ci6qrtV77bkmnvpidZB5CCabHEcjZAkR7m7PBpJfsV3JhaitbGJrRJCqZCq4hxvBEk6RJNAautSZBOlB4Nj78ELhIEqlmiIlL4Ckg1AZAvqlTAHsugw85YRVzZAXcSFTbEtZA0uroBNb8ktWZAjE1RhU0Q22'
     }
     headers = {
         "Content-Type": "application/json"
@@ -703,81 +702,60 @@ def send_message(recipient_id, message_text):
 def process_message(text,sender_id):
         text=text.lower()
         words=text.split(" ")
-##        output=" "
-        output="Level-1-Menu"
-##        ps = PorterStemmer()
-##        words=word_tokenize(text)
-##        tokens=nltk.word_tokenize(text)
-##        tagged=nltk.pos_tag(tokens)
-##        entities=nltk.ne_chunk(tagged)
-        print words
-        for w in words:
-                #print w
-                print w
-                #print w.lower()
-                if(w.lower()=='enrol'):
-                        if 'online' in str(words).lower() and 'banking' in str(words).lower():
-                            output='Enroll to online banking at https://www.usbank.com/index.html'
-                elif(w.lower()=='block'):
-                        if 'my' in str(words).lower() and 'card' in str(words).lower():
-                            output="login"
-                elif(w.lower()=='activat'):
-                    output="Card has been Activated"
-                elif(w.lower()=='balanc' or w.lower()=='summari'):
-                    output="balance_check"
-                elif(w.lower()=='histori' or w.lower()=='transact'):
-                    if 'cancel' in str(words).lower():
-                        output="transaction_receipt"
-                    elif 'last' in str(words).lower():
-                        output="transaction_history"
-                elif(w.lower()=='thanks' or w.lower()=='thank'):
-                    output="You are Welcome!"
-                elif(w.lower().isdigit() and len(str(w))):
-                    #output="Please find the details here: https://www.usbank.com/locations/locator-results.html?stringquery="+w)+"&branch=y&atm=y"
-                    output=w.lower()
-                elif(w.lower()=='branch' or w.lower()=='atm'):
-                    if 'locat' in str(words).lower() or 'find' in str(words).lower() or 'search' in str(words).lower():
-                        output="branch_locate"
-                elif(w.lower()=='login'):
-                        output="login_menu"
-                elif(w.lower()=='log'):
-                    if 'out' in str(words).lower():
-                        output="log_out"
-                
-##        for w in words:
-##                #print w
-##                print ps.stem(w)
-##                #print ps.stem(w).lower()
-##                if(ps.stem(w).lower()=='enrol'):
-##                        if 'online' in str(words).lower() and 'banking' in str(words).lower():
-##                            output='Enroll to online banking at https://www.usbank.com/index.html'
-##                elif(ps.stem(w).lower()=='block'):
-##                        if 'my' in str(words).lower() and 'card' in str(words).lower():
-##                            output="login"
-##                elif(ps.stem(w).lower()=='activat'):
-##                    output="Card has been Activated"
-##                elif(ps.stem(w).lower()=='balanc' or ps.stem(w).lower()=='summari'):
-##                    output="balance_check"
-##                elif(ps.stem(w).lower()=='histori' or ps.stem(w).lower()=='transact'):
-##                    if 'cancel' in str(words).lower():
-##                        output="transaction_receipt"
-##                    elif 'last' in str(words).lower():
-##                        output="transaction_history"
-##                elif(ps.stem(w).lower()=='thanks' or ps.stem(w).lower()=='thank'):
-##                    output="You are Welcome!"
-##                elif(ps.stem(w).lower().isdigit() and len(str(ps.stem(w)))):
-##                    #output="Please find the details here: https://www.usbank.com/locations/locator-results.html?stringquery="+ps.stem(w)+"&branch=y&atm=y"
-##                    output=ps.stem(w).lower()
-##                elif(ps.stem(w).lower()=='branch' or ps.stem(w).lower()=='atm'):
-##                    if 'locat' in str(words).lower() or 'find' in str(words).lower() or 'search' in str(words).lower():
-##                        output="branch_locate"
-##                elif(ps.stem(w).lower()=='login'):
-##                        output="login_menu"
-##                elif(ps.stem(w).lower()=='log'):
-##                    if 'out' in str(words).lower():
-##                        output="log_out"
-        print ("heloo" + output)
+        print("Before GetMethod")
+        strResponse = GetMethod(text)
+        print("After GetMethod")
+        Action = ProcessAPIAIResponse(strResponse)
+        print(Action)
+        if(len(Action) > 0):
+            output=Action
+        else:
+            output="Level-1-Menu"
+            print words
+            for w in words:
+                    #print w
+                    print w
+                    #print w.lower()
+                    if(w.lower()=='enrol'):
+                            if 'online' in str(words).lower() and 'banking' in str(words).lower():
+                                output='Enroll to online banking at https://www.usbank.com/index.html'
+                    elif(w.lower()=='block'):
+                            if 'my' in str(words).lower() and 'card' in str(words).lower():
+                                output="login"
+                    elif(w.lower()=='activat'):
+                        output="Card has been Activated"
+                    elif(w.lower()=='balanc' or w.lower()=='summari'):
+                        output="balance_check"
+                    elif(w.lower()=='histori' or w.lower()=='transact'):
+                        if 'cancel' in str(words).lower():
+                            output="transaction_receipt"
+                        elif 'last' in str(words).lower():
+                            output="transaction_history"
+                    elif(w.lower()=='thanks' or w.lower()=='thank'):
+                        output="You are Welcome!"
+                    elif(w.lower().isdigit() and len(str(w))):
+                        #output="Please find the details here: https://www.usbank.com/locations/locator-results.html?stringquery="+w)+"&branch=y&atm=y"
+                        output=w.lower()
+                    #elif(w.lower()=='branch' or w.lower()=='atm'):
+                        #if 'locat' in str(words).lower() or 'find' in str(words).lower() or 'search' in str(words).lower():
+                          #  output="branch_locate"
+                    elif(w.lower()=='login' and len(words) == 1):
+                            output="login_menu"
+                    elif(w.lower()=='log'):
+                        if 'out' in str(words).lower():
+                            output="log_out"
+
+                            
         send_message(sender_id, output)
+
+
+def ProcessAPIAIResponse(strResponse):
+    if "APIAIBranchAction" in strResponse:
+        return "branch_locate"
+
+    return "branch_locate"
+    
+
 
 def log(message):  # simple wrapper for logging to stdout on heroku
     print str(message)
