@@ -104,7 +104,7 @@ def send_message(recipient_id, message_text):
     locFinderUrl="https://publicrestservice.usbank.com/public/ATMBranchLocatorRESTService_V_8_0/GetListATMorBranch/LocationSearch/StringQuery?application=parasoft&transactionid=7777777d-8946-4f88-a958-4bdbcf0bed6f&output=json&searchtype=E&branchfeatures=BOP&stringquery="
 
     params = {
-        "access_token": 'EAARneTfc3AYBAE2why15aJStTsMZCvLKNZBS6dUvXLccMWGuOjYxyk7PBTDLYzdQ4AT6PIHTSp7Of1oTaICX5Ma5ntrMCrVT32kIlui143FytI5ZC0o4bTWerGkaI9B3ZAzgtwrny8PqtLsxvgGtYUSMaEnX0PjQSE7ZBGWizY6vUodha8XGp'
+        "access_token": 'EAAZAgx2FZBzKoBACcZB1MJffVOxIau6PixujqJBDwiUZAP6h6j0jcCegmXDZAtVC1ypISVitB243CQZA8e9FPmp2VPVPHQjjWHmWp3FZAOhTZAOmcDhSEPEHQwIpx6jZAv7ZAWIYpPkcGETZA9tyEKd4ViGuOer6npsZCZB1ub4DdNRzu1SPizEY3FTa4'
     }
     headers = {
         "Content-Type": "application/json"
@@ -694,6 +694,9 @@ def send_message(recipient_id, message_text):
     print data
 
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+    print params
+    print headers
+    print r.status_code
 
     return r.status_code;
 
@@ -740,7 +743,7 @@ def process_message(text,sender_id):
                 elif(w.lower()=='log'):
                     if 'out' in str(words).lower():
                         output="log_out"
-               
+                
 ##        for w in words:
 ##                #print w
 ##                print ps.stem(w)
