@@ -699,7 +699,8 @@ def send_message(recipient_id, message_text):
 
 def process_message(text,sender_id):
         text=text.lower()
-        output="Level-1-Menu"
+        words=text.split(" ")
+##        output="Level-1-Menu"
 ##        ps = PorterStemmer()
 ##        words=word_tokenize(text)
 ##        tokens=nltk.word_tokenize(text)
