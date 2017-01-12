@@ -16,12 +16,12 @@ except ImportError:
     
 from flask import Flask, request
 from datetime import datetime
-import nltk
-from nltk.stem import PorterStemmer
-from nltk.tokenize import word_tokenize
+##import nltk
+##from nltk.stem import PorterStemmer
+##from nltk.tokenize import word_tokenize
 
 app = Flask(__name__)
-CLIENT_ACCESS_TOKEN = '64a9a332b5834a73b61b860b885def02'
+CLIENT_ACCESS_TOKEN = '02c71e6097984c9691f891e0f63a0c14'
 
 #@app.route('/GetMethod', methods=['Get'])
 def GetMethod(strUserQuery):
@@ -700,11 +700,11 @@ def send_message(recipient_id, message_text):
 def process_message(text,sender_id):
         text=text.lower()
         output="Level-1-Menu"
-        ps = PorterStemmer()
-        words=word_tokenize(text)
-        tokens=nltk.word_tokenize(text)
-        tagged=nltk.pos_tag(tokens)
-        entities=nltk.ne_chunk(tagged)
+##        ps = PorterStemmer()
+##        words=word_tokenize(text)
+##        tokens=nltk.word_tokenize(text)
+##        tagged=nltk.pos_tag(tokens)
+##        entities=nltk.ne_chunk(tagged)
         print words
         for w in words:
                 #print w
