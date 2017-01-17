@@ -750,10 +750,21 @@ def process_message(text,sender_id):
 
 
 def ProcessAPIAIResponse(strResponse):
-    if "APIAIBranchAction" in strResponse:
-        return "branch_locate"
+##    if "APIAIBranchAction" in strResponse:
+##        return "branch_locate"
+##
+##    return ""
+    data = strResponse
 
-    return ""
+    #log(data)     
+
+    for entry in data["result"]:
+
+	    action = entry["action"]
+	    if "APIAIBranchAction" in action: 
+	     	 return "branch_locate"
+		       
+	    return ""
     
 
 
