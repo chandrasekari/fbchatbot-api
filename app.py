@@ -756,8 +756,8 @@ def ProcessAPIAIResponse(strResponse):
     print data
     print("hello")
     for entry in data:
-        for result in entry["result"]:
-            action = result["action"]
+        for result in entry[2]:
+            action = result[2]
             if "APIAIBranchAction" in action:
                 return "branch_locate"
             return ""
