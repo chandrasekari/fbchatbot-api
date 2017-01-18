@@ -750,11 +750,11 @@ def process_message(text,sender_id):
 
 
 def ProcessAPIAIResponse(strResponse):
-    data = strResponse
-
-    log(data)
+    data = json.loads(strResponse)
     print data
-    print("hello")
+    log(data)
+    
+    print("hello afetr json")
     for entry in data:
         for result in entry[2]:
             action = result[2]
