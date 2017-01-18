@@ -752,11 +752,11 @@ def process_message(text,sender_id):
 def ProcessAPIAIResponse(strResponse):
     data = json.loads(strResponse)
     print data
-    for entry in data["result"]:
-        action = entry["action"]
-        if "APIAIBranchAction" in action:
-            return "branch_locate"
-        return ""
+##    for entry in data["result"]:
+    action = data["result"]["action"]
+    if "APIAIBranchAction" in action:
+        return "branch_locate"
+    return ""
         
 
 
