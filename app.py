@@ -768,7 +768,7 @@ def ProcessAPIAIResponse(strResponse):
     if "APIAIBranchAction" in action:
         return "branch_locate"
     elif "APIDefaultEvent" in action:
-        return "api_default"
+        return "Level-1-Menu"
     return ""
         
 
