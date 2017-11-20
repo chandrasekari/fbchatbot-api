@@ -765,10 +765,13 @@ def ProcessAPIAIResponse(strResponse):
     data = json.loads(strResponse)
     print data
 ##    for entry in data["result"]:
-    action = data["result"]["action"]
-    if "APIAIBranchAction" in action:
-        return "branch_locate"
-    return ""
+    if data["result"].get("action"):
+        action = data["result"]["action"]
+        if "APIAIBranchAction" in action:
+            return "branch_locate"
+        return ""
+    else
+        return ""
         
 
 
