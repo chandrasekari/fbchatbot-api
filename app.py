@@ -681,6 +681,16 @@ def send_message(recipient_id, message_text):
                 "text": "Welcome !You are logged Successfully"
             }
         })
+        
+    elif "api_default" in message_text:
+        data = json.dumps({
+            "recipient": {
+                "id": recipient_id
+            },
+            "message": {
+                "text": "Incorrect message"
+            }
+        })
 
     else:
         data = json.dumps({
@@ -757,6 +767,8 @@ def ProcessAPIAIResponse(strResponse):
     action = data["result"]["action"]
     if "APIAIBranchAction" in action:
         return "branch_locate"
+    elif "APIDefaultEvent" in action:
+        return "api_default"
     return ""
         
 
