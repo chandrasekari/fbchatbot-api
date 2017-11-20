@@ -770,7 +770,7 @@ def ProcessAPIAIResponse(strResponse):
         if "APIAIBranchAction" in action:
             return "branch_locate"
         return ""
-    else
+    else:
         return ""
         
 
