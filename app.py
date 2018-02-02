@@ -771,6 +771,8 @@ def ProcessAPIAIResponse(strResponse):
             return "branch_locate"
         if "APIAIBalance" in action:
             return "balance_check"
+        if "APIAITransaction" in action:
+            return "transaction_history"
         return ""
     else:
         return ""
