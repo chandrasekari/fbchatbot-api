@@ -769,6 +769,8 @@ def ProcessAPIAIResponse(strResponse):
         action = data["result"]["action"]
         if "APIAIBranchAction" in action:
             return "branch_locate"
+        if "APIAIBalance" in action:
+            return "balance_check"
         return ""
     else:
         return ""
